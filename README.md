@@ -1,5 +1,7 @@
 # Wind Map
 
+![A wind map that shows animating particles over LA](./documentation/wind-map--002.gif)
+
 To run this...
 
 ## Setup
