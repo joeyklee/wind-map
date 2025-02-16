@@ -45,6 +45,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding: 1rem;
 	}
 
 	.app-content {
@@ -76,5 +77,18 @@
 	}
 	a {
 		color: inherit;
+	}
+	@media (max-width: 600px) {
+		.header {
+			justify-content: flex-start;
+			align-items: flex-start;
+			flex-direction: column;
+		}
+		.title {
+			margin-bottom: 5px;
+		}
+		.app {
+			align-items: flex-start;
+		}
 	}
 </style>

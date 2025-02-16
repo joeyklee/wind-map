@@ -63,7 +63,7 @@
 		});
 		// create your movers
 		const movers = randomPointsInBbox.features.map((feat) => {
-			return new Mover(feat.geometry.coordinates, bbox, { maxLifetime: 100, maxPoints: 30 });
+			return new Mover(feat.geometry.coordinates, bbox, { maxLifetime: 100, maxPoints: 15 });
 		});
 
 		// create your flow field

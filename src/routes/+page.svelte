@@ -36,6 +36,9 @@
 </div>
 
 <style>
+	* {
+		box-sizing: border-box;
+	}
 	.wrapper {
 		width: 100%;
 		height: 100%;
