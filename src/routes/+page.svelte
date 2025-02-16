@@ -7,7 +7,7 @@
 	<div class="container">
 		<h1 class="title">Flow Fields! Vectors! Wind maps!</h1>
 		<div class="map-container">
-			<MapboxWindMap MOVER_COUNT={500} />
+			<MapboxWindMap MOVER_COUNT={1000} />
 		</div>
 		<p class="description">
 			This is my own version of a "wind map." At its core is an implementation of a "<a
