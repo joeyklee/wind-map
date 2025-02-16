@@ -23,6 +23,15 @@ npm run dev
 
 If you have different data, you'll need to adjust the parameters in the `Map` and `CanvasWindLayer`!
 
+## Credits
+
+- Core idea via Natue of Code - Dan Shiffman
+- Spatial indexing: KDBush
+- Mappling libraries: Maplibre, Mapboxgl
+- spatial helpers: Turfjs
+- datetime handling: Dayjs
+- @joeyklee/whateverest-vector
+
 ---
 
 Created using vite & sveltekit

@@ -23,7 +23,8 @@
 			demos versions built for
 			<a href="/maplibre-wind-map">Maplibregl</a>
 			and <a href="/mapbox-wind-map">Mapboxgl</a>. You can find the
-			<a href="#" target="_blank">code</a> here if you're curious ❤
+			<a href="https://github.com/joeyklee/wind-map" target="_blank">code</a> here if you're curious
+			❤
 		</p>
 		<p class="note">
 			Note: this approach currently doesn't really scale well for large geographic extents but could
