@@ -15,7 +15,8 @@ const config = {
 			fallback: '404.html',
 			pages: 'build', // Output directory for built site
 			assets: 'build', // Output directory for static assets
-			fallback: null
+			fallback: null,
+			strict: false
 		})
 	},
 	paths: {
