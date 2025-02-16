@@ -32,6 +32,10 @@ If you have different data, you'll need to adjust the parameters in the `Map` an
 - datetime handling: Dayjs
 - @joeyklee/whateverest-vector
 
+## deploying to gh pages
+
+https://svelte.dev/docs/kit/adapter-static#GitHub-Pages
+
 ---
 
 Created using vite & sveltekit

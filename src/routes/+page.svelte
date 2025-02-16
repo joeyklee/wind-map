@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import MapboxWindMap from '$lib/MapboxWindMap/index.svelte';
 </script>
 
@@ -21,8 +22,8 @@
 			>
 			out there already so I hope this approach might reveal something new or different. You'll find
 			demos versions built for
-			<a href="/maplibre-wind-map">Maplibregl</a>
-			and <a href="/mapbox-wind-map">Mapboxgl</a>. You can find the
+			<a href="{base}/maplibre-wind-map">Maplibregl</a>
+			and <a href="{base}/mapbox-wind-map">Mapboxgl</a>. You can find the
 			<a href="https://github.com/joeyklee/wind-map" target="_blank">code</a> here if you're curious
 			❤
 		</p>
