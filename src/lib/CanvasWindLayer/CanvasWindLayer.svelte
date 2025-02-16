@@ -3,7 +3,7 @@
 	import FlowField from '$lib/FlowField/FlowField';
 	import Mover from '$lib/Mover/Mover';
 	import { onMount } from 'svelte';
-	import { fieldList, parseTimestampFromFileName } from '$lib/WindData';
+	import { fieldList, parseTimestampFromFileName, bbox } from '$lib/WindData';
 	import { base } from '$app/paths';
 
 	/**
@@ -13,6 +13,10 @@
 	export let width = 0;
 	export let height = 0;
 	export let timestamp;
+	export let MOVER_COUNT = 1000;
+	export let FLOW_FIELD_UPDATE_MS = 1000 * 10;
+	export let moverOptions = { maxLifetime: 100, maxPoints: 15 };
+	export let flowfieldOptions = {};
 
 	/**
 	 * @type {function}
@@ -20,10 +24,6 @@
 	export let projectionHandler;
 
 	const DEBUG = false;
-
-	// define some consts
-	export let MOVER_COUNT = 1000;
-	const FLOW_FIELD_UPDATE_MS = 1000 * 10;
 
 	let fieldListCounter = 0;
 
@@ -50,11 +50,6 @@
 		canvas.style.zIndex = String(2);
 		const ctx = canvas.getContext('2d');
 
-		// Define a bounding box where your movers are going to spawn from
-		/**
-		 * @type {import('geojson').BBox}
-		 */
-		const bbox = [-119.68271409305416, 33.28492388432518, -116.5798857475649, 35.092658659523266];
 		// Set the number of mobers
 		const numberOfMovers = MOVER_COUNT;
 		// create a bunch of random points that we'll use to create our movers
@@ -63,11 +58,11 @@
 		});
 		// create your movers
 		const movers = randomPointsInBbox.features.map((feat) => {
-			return new Mover(feat.geometry.coordinates, bbox, { maxLifetime: 100, maxPoints: 15 });
+			return new Mover(feat.geometry.coordinates, bbox, moverOptions);
 		});
 
 		// create your flow field
-		const field = new FlowField();
+		const field = new FlowField(flowfieldOptions);
 		// load your data to populate the field from the data
 		timestamp = parseTimestampFromFileName(fieldList[0].data);
 		await field.load(`./${fieldList[0].data}`, `./${fieldList[0].index}`);
@@ -117,5 +112,6 @@
 		map.on('viewreset', render);
 		// map.on('move', render);
 		map.on('moveend', render);
+		map.on('zoomend', render);
 	});
 </script>

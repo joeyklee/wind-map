@@ -4,6 +4,13 @@ import timezone from 'dayjs/plugin/timezone';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
+// Define a bounding box where your movers are going to spawn from
+/**
+ * @type {import('geojson').BBox}
+ */
+export const bbox = [
+	-119.68271409305416, 33.28492388432518, -116.5798857475649, 35.092658659523266
+];
 // A sorted list of the data and the index -- the index is the processed result of the kdbush index
 // created by running `npm run create-index` on the source data
 export const fieldList = [
