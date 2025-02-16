@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
-on:
-  workflow_dispatch
+on: workflow_dispatch
 
 # https://svelte.dev/docs/kit/adapter-static#GitHub-Pages
 jobs:
+  # build process
   build_site:
     runs-on: ubuntu-latest
     steps:
@@ -13,27 +13,25 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
- node-version: 22
- cache: npm
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
       - name: build
         env:
- BASE_PATH: '/${{ github.event.repository.name }}'
+          BASE_PATH: '/${{ github.event.repository.name }}'
+          VITE_MAPBOX_ACCESS_TOKEN: ${{ secrets.VITE_MAPBOX_ACCESS_TOKEN }} # https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
         run: |
           npm run build
-        # https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
-        env: # Or as an environment variable
-          VITE_MAPBOX_ACCESS_TOKEN: ${{ secrets.VITE_MAPBOX_ACCESS_TOKEN }}
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
- # this should match the `pages` option in your adapter-static options
- path: 'build/'
-
+          # this should match the `pages` option in your adapter-static options
+          path: 'build/'
+  # deploy
   deploy:
     needs: build_site
     runs-on: ubuntu-latest
