@@ -34,7 +34,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Display repository name
-        run: echo "The repository name is: ${{ github.event.repository.name }}"
+        run: |
+          echo "The repository name is ${{ github.event.repository.name }}"
       - name: Build
         run: npm run build
         env:
@@ -50,9 +51,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-
-
 # name: Publish
 # on: workflow_dispatch
 
@@ -76,8 +74,8 @@ jobs:
 
 #       - name: build
 #         env:
-#           BASE_PATH: '/${{ github.event.repository.name }}' 
-          
+#           BASE_PATH: '/${{ github.event.repository.name }}'
+
 #         run: |
 #           npm run build
 
