@@ -36,6 +36,27 @@ If you have different data, you'll need to adjust the parameters in the `Map` an
 
 https://svelte.dev/docs/kit/adapter-static#GitHub-Pages
 
+- make sure to set `prerender=true` in `routes/+layout.js`
+
+## License
+
+This project uses the following open-source libraries:
+
+- **KDBush** (ISC [License](https://github.com/mourner/kdbush/blob/main/LICENSE))
+  Copyright (c) 2018 Vladimir Agafonkin
+
+- **Maplibre-gl** ([License](https://github.com/maplibre/maplibre-gl-js/blob/main/LICENSE.txt))
+  Copyright (c) 2023, MapLibre contributors
+
+- **Dayjs** (MIT [License](https://github.com/iamkun/dayjs/blob/dev/LICENSE))
+  Copyright (c) 2018-present, iamkun
+
+- **Svelte** (MIT [License](https://github.com/sveltejs/svelte/blob/main/LICENSE.md))
+  Copyright (c) 2016-2025 [these people](https://github.com/sveltejs/svelte/graphs/contributors)
+
+- **Turfjs** (MIT [License](https://github.com/Turfjs/turf/blob/master/LICENSE))
+  Copyright (c) 2019 Morgan Herlocker
+
 ---
 
 Created using vite & sveltekit
