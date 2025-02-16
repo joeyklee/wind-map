@@ -80,4 +80,12 @@
 		color: inherit;
 		text-decoration: underline;
 	}
+	@media (max-width: 600px) {
+		.wrapper {
+			align-items: flex-start;
+		}
+		.container {
+			display: block;
+		}
+	}
 </style>
