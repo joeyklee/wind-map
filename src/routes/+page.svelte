@@ -1,13 +1,15 @@
 <script>
 	import { base } from '$app/paths';
 	import MapboxWindMap from '$lib/MapboxWindMap/index.svelte';
+	let timestamp;
 </script>
 
 <div class="wrapper">
 	<div class="container">
 		<h1 class="title">Flow Fields! Vectors! Wind maps!</h1>
 		<div class="map-container">
-			<MapboxWindMap MOVER_COUNT={1000} />
+			<MapboxWindMap MOVER_COUNT={1000} bind:timestamp />
+			<p class="timestamp">Data: NOAA · {timestamp}</p>
 		</div>
 		<p class="description">
 			Behold! A wind map! While there are already a lot of different approaches to building
@@ -22,9 +24,10 @@
 			<a href="https://natureofcode.com/" target="_blank">Nature of Code</a>
 			(Hi Dan!). You'll find demo versions built for
 			<a href="{base}/maplibre-wind-map">Maplibregl</a>
-			and <a href="{base}/mapbox-wind-map">Mapboxgl</a>. You can find the
-			<a href="https://github.com/joeyklee/wind-map" target="_blank">code</a> here if you're curious
-			❤
+			and <a href="{base}/mapbox-wind-map">Mapboxgl</a>. You can
+			<a href="https://github.com/joeyklee/wind-map" target="_blank"
+				>find the code here at @joeyklee/wind-map</a
+			> ❤.
 		</p>
 		<p class="note">
 			Note: this approach currently doesn't really scale well for large geographic extents but could
@@ -35,6 +38,14 @@
 </div>
 
 <style>
+	.timestamp {
+		display: block;
+		margin: 3px;
+		font-size: 10px;
+		color: #666;
+		line-height: 14px;
+		text-align: left;
+	}
 	* {
 		box-sizing: border-box;
 	}
@@ -52,7 +63,7 @@
 	.map-container {
 		width: 100%;
 		height: 360px;
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 	}
 	.note {
 		font-size: 10px;
