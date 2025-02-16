@@ -4,6 +4,7 @@
 	import Mover from '$lib/Mover/Mover';
 	import { onMount } from 'svelte';
 	import { fieldList, parseTimestampFromFileName } from '$lib/WindData';
+	import { base } from '$app/paths';
 
 	/**
 	 * @type {import('mapbox-gl').Map}
@@ -81,8 +82,8 @@
 				console.log('loading next!!');
 			}
 			await field.load(
-				`./${fieldList[fieldListCounter].data}`,
-				`./${fieldList[fieldListCounter].index}`
+				`${base}/${fieldList[fieldListCounter].data}`,
+				`${base}/${fieldList[fieldListCounter].index}`
 			);
 		}, FLOW_FIELD_UPDATE_MS);
 
