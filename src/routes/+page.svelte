@@ -10,18 +10,17 @@
 			<MapboxWindMap MOVER_COUNT={1000} />
 		</div>
 		<p class="description">
-			This is my own version of a "wind map." At its core is an implementation of a "<a
-				href="https://natureofcode.com/autonomous-agents/"
-				target="_blank">flow field</a
-			>" from Dan Shiffman's
-			<a href="https://natureofcode.com/" target="_blank">Nature of Code</a>
-			(Hi Dan!). There are lots of different approaches to building
+			Behold! A wind map! While there are already a lot of different approaches to building
 			<a
 				target="_blank"
 				href="https://blog.mapbox.com/how-i-built-a-wind-map-with-webgl-b63022b5537f">wind maps</a
 			>
-			out there already so I hope this approach might reveal something new or different. You'll find
-			demos versions built for
+			out there, I have long wanted to bake my own. At its core is an implementation of a "<a
+				href="https://natureofcode.com/autonomous-agents/"
+				target="_blank">flow field</a
+			>" from Dan Shiffman's
+			<a href="https://natureofcode.com/" target="_blank">Nature of Code</a>
+			(Hi Dan!). You'll find demo versions built for
 			<a href="{base}/maplibre-wind-map">Maplibregl</a>
 			and <a href="{base}/mapbox-wind-map">Mapboxgl</a>. You can find the
 			<a href="https://github.com/joeyklee/wind-map" target="_blank">code</a> here if you're curious
