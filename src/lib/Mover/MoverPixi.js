@@ -63,14 +63,14 @@ export default class Mover {
 			this.location = whateverestVector({ x: randomP[0], y: randomP[1] });
 			this.lifetime = 0;
 
-			this.points = [];
-			this.circles.forEach((d, idx) => {
-				// Remove the circle from the stage
-				d.clear();
-				app.stage.removeChild(d);
-				d.destroy();
-			});
-			this.circles = [];
+			// this.points = [];
+			// this.circles.forEach((d, idx) => {
+			// 	// Remove the circle from the stage
+			// 	d.clear();
+			// 	app.stage.removeChild(d);
+			// 	d.destroy();
+			// });
+			// this.circles = [];
 		}
 	}
 
@@ -96,30 +96,30 @@ export default class Mover {
 		// reset the acceleration on each iteration
 		this.acceleration = this.acceleration.multiply(this.acceleration, 0);
 
-		this.points.push(this.location);
+		this.points.push([this.location.location.x, this.location.location.y]);
 
-		const newCircle = new Graphics();
-		newCircle.circle(0, 0, 2);
-		newCircle.fill({
-			color: 'red',
-			alpha: 1
-		});
-		app.stage.addChild(newCircle);
+		// const newCircle = new Graphics();
+		// newCircle.circle(0, 0, 2);
+		// newCircle.fill({
+		// 	color: 'red',
+		// 	alpha: 1
+		// });
+		// app.stage.addChild(newCircle);
 
-		this.circles.push(newCircle);
+		// this.circles.push(newCircle);
 
 		this.points = this.points.slice(-this.maxPoints);
 
 		// destroy any extra points
-		this.circles.forEach((d, idx) => {
-			if (idx > this.maxPoints) {
-				// Remove the circle from the stage
-				app.stage.removeChild(d);
-				d.destroy();
-			}
-		});
-		// resize the circles array
-		this.circles = this.circles.slice(-this.maxPoints);
+		// this.circles.forEach((d, idx) => {
+		// 	if (idx > this.maxPoints) {
+		// 		// Remove the circle from the stage
+		// 		app.stage.removeChild(d);
+		// 		d.destroy();
+		// 	}
+		// });
+		// // resize the circles array
+		// this.circles = this.circles.slice(-this.maxPoints);
 
 		this.lifetime += 1;
 	}
@@ -148,7 +148,7 @@ export default class Mover {
 	render(app, handleProjection) {
 		if (!this.points.length && !this.circles.length) return;
 		this.points.forEach((location, idx) => {
-			const point = handleProjection([location.location.x, location.location.y]);
+			const point = handleProjection([location[0], location[1]]);
 			const circle = this.circles[idx];
 			circle.clear();
 			circle.circle(0, 0, 2);

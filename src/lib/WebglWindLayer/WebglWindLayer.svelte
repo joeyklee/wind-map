@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { fieldList, parseTimestampFromFileName, bbox } from '$lib/WindData';
 	import { base } from '$app/paths';
-	import { Application } from 'pixi.js';
+	import { Application, Graphics } from 'pixi.js';
 
 	/**
 	 * @type {import('mapbox-gl').Map}
@@ -16,7 +16,7 @@
 	export let timestamp;
 	export let MOVER_COUNT = 500;
 	export let FLOW_FIELD_UPDATE_MS = 1000 * 10;
-	export let moverOptions = { maxLifetime: 100, maxPoints: 20 };
+	export let moverOptions = { maxLifetime: 100, maxPoints: 10 };
 	export let flowfieldOptions = {};
 
 	/**
@@ -62,7 +62,21 @@
 		});
 		// create your movers
 		const movers = randomPointsInBbox.features.map((feat) => {
-			return new Mover(feat.geometry.coordinates, bbox, moverOptions);
+			const myMover = new Mover(feat.geometry.coordinates, bbox, moverOptions);
+
+			// TODO: move this logic into the MoverPixi class
+			myMover.circles = [...new Array(myMover.maxPoints).fill(null)].map((d) => {
+				const newCircle = new Graphics();
+				newCircle.circle(0, 0, 2);
+				newCircle.fill({
+					color: 'red',
+					alpha: 1
+				});
+				app.stage.addChild(newCircle);
+
+				return newCircle;
+			});
+			return myMover;
 		});
 
 		// create your flow field
