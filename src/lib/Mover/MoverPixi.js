@@ -66,6 +66,7 @@ export default class Mover {
 			this.points = [];
 			this.circles.forEach((d, idx) => {
 				// Remove the circle from the stage
+				d.clear();
 				app.stage.removeChild(d);
 				d.destroy();
 			});
@@ -98,8 +99,11 @@ export default class Mover {
 		this.points.push(this.location);
 
 		const newCircle = new Graphics();
-		newCircle.circle(0, 0, 1);
-		newCircle.fill('red');
+		newCircle.circle(0, 0, 2);
+		newCircle.fill({
+			color: 'red',
+			alpha: 1
+		});
 		app.stage.addChild(newCircle);
 
 		this.circles.push(newCircle);
@@ -146,16 +150,14 @@ export default class Mover {
 		this.points.forEach((location, idx) => {
 			const point = handleProjection([location.location.x, location.location.y]);
 			const circle = this.circles[idx];
+			circle.clear();
+			circle.circle(0, 0, 2);
+			circle.fill({
+				color: 'red',
+				alpha: (idx / this.points.length) * 0.5
+			});
 			circle.x = point.x;
 			circle.y = point.y;
-			// ctx.save();
-			// ctx.translate(point.x, point.y);
-			// // ctx.fillStyle = `rgba(150, 150, 150, ${(idx / this.points.length) * 0.95})`;
-			// ctx.fillStyle = `rgba(125, 77, 153, ${(idx / this.points.length) * 0.5})`;
-			// ctx.beginPath();
-			// ctx.arc(0, 0, 1, 0, Math.PI * 2);
-			// ctx.fill();
-			// ctx.restore();
 		});
 	}
 }

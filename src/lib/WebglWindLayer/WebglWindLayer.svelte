@@ -14,9 +14,9 @@
 	export let width = 0;
 	export let height = 0;
 	export let timestamp;
-	export let MOVER_COUNT = 1000;
+	export let MOVER_COUNT = 500;
 	export let FLOW_FIELD_UPDATE_MS = 1000 * 10;
-	export let moverOptions = { maxLifetime: 50, maxPoints: 30 };
+	export let moverOptions = { maxLifetime: 100, maxPoints: 20 };
 	export let flowfieldOptions = {};
 
 	/**
@@ -96,8 +96,22 @@
 			});
 		}
 
-		// render();
+		// function update() {
+		// 	movers.forEach((mover) => {
+		// 		mover.intersects(field.field, field.index);
+		// 		mover.update(app);
+		// 	});
+		// }
 
+		// // This renders the scene as quickly as possible
+		// function animate() {
+		// 	requestAnimationFrame(animate);
+
+		// 	update();
+		// }
+
+		// animate();
+		// app.ticker.speed = 0.05;
 		// render(); // Call once to render
 		app.ticker.add(() => {
 			render();
