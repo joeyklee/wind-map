@@ -2,7 +2,7 @@
 	// @ts-check
 	import Map from '../MaplibreWindMap/Map.svelte';
 	import maplibregl from 'maplibre-gl';
-	import WebglWindLayer from '$lib/WebglWindLayer/WebglWindLayer.svelte';
+	import WebglWindLayer from '$lib/WindLayer/WindLayerWebgl.svelte';
 
 	/**
 	 * @type {null|string}

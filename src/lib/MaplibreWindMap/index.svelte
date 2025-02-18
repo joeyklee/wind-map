@@ -1,7 +1,7 @@
 <script>
 	// @ts-check
 	import Map from './Map.svelte';
-	import CanvasWindLayer from '../CanvasWindLayer/CanvasWindLayer.svelte';
+	import CanvasWindLayer from '../WindLayer/WindLayerCanvas.svelte';
 	import maplibregl from 'maplibre-gl';
 
 	/**

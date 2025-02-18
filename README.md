@@ -23,7 +23,7 @@ npm run dev
 
 ## Adjusting parameters
 
-If you have different data, you'll need to adjust the parameters in the `Map` and `CanvasWindLayer`!
+If you have different data, you'll need to adjust the parameters in the `Map` and `CanvasWindLayer` or `WebglWindLayer`!
 
 ## Credits
 
@@ -58,6 +58,9 @@ This project uses the following open-source libraries:
 
 - **Turfjs** (MIT [License](https://github.com/Turfjs/turf/blob/master/LICENSE))
   Copyright (c) 2019 Morgan Herlocker
+
+- **Pixijs** (The MIT [License](https://github.com/pixijs/pixijs/blob/dev/LICENSE))
+  Copyright (c) 2013-2023 Mathew Groves, Chad Engler
 
 ---
 

@@ -2,7 +2,7 @@
 	// @ts-check
 	import Map from '../MapboxWindMap/Map.svelte';
 	import mapboxgl from 'mapbox-gl';
-	import WebglWindLayer from '$lib/WebglWindLayer/WebglWindLayer.svelte';
+	import WebglWindLayer from '$lib/WindLayer/WindLayerWebgl.svelte';
 
 	/**
 	 * @type {null|string}
