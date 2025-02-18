@@ -2,7 +2,7 @@
 import { lengthToDegrees, randomPosition } from '@turf/turf';
 // @ts-ignore
 import whateverestVector from '@joeyklee/whateverest-vector';
-import { Graphics } from 'pixi.js';
+import { Graphics, Particle } from 'pixi.js';
 
 /**
  * @typedef {{
@@ -21,14 +21,27 @@ const DEFAULT_OPTIONS = {
 	effectiveDistance: lengthToDegrees(3, 'kilometers')
 };
 
+/**
+ * @typedef {{
+ * texture: import('pixi.js').Texture,
+ *  particleContainer: import('pixi.js').ParticleContainer
+ * }} PixiMoverOptions
+ */
+
 export default class Mover {
 	/**
 	 *
 	 * @param {number[]} param0
 	 * @param {import('geojson').BBox} bbox
 	 * @param {MOVER_OPTIONS} options
+	 * @param {PixiMoverOptions} options
 	 */
-	constructor([lng, lat], bbox, options = /** @type {MOVER_OPTIONS} */ ({})) {
+	constructor(
+		[lng, lat],
+		bbox,
+		options = /** @type {MOVER_OPTIONS} */ ({}),
+		{ texture, particleContainer }
+	) {
 		const { maxPoints, maxSpeed, maxForce, maxLifetime, effectiveDistance } = {
 			...DEFAULT_OPTIONS,
 			...options
@@ -48,10 +61,22 @@ export default class Mover {
 		this.lifetime = 0;
 		this.maxLifetime = maxLifetime;
 		this.effectiveDistance = effectiveDistance;
-		this.circles = [];
+		/**
+		 * @type {import('pixi.js').Particle[]}
+		 */
+		this.circles = [...new Array(this.maxPoints).fill(null)].map((d, idx) => {
+			const particle = new Particle({
+				texture,
+				x: 0,
+				y: 0,
+				alpha: (idx / this.maxPoints) * 0.5
+			});
+			particleContainer.addParticle(particle);
+			return particle;
+		});
 	}
 
-	reset(app) {
+	reset() {
 		if (
 			this.lifetime > this.maxLifetime ||
 			this.location.location.x >= this.bbox[2] ||
@@ -65,11 +90,11 @@ export default class Mover {
 		}
 	}
 
-	update(app) {
+	update() {
 		if (!this.fieldCell) {
 			return;
 		}
-		this.reset(app);
+		this.reset();
 		// What is the vector at that spot in the flow field?
 		let desired = this.fieldCell.acceleration;
 		// Scale it up by maxspeed
@@ -111,11 +136,9 @@ export default class Mover {
 	}
 
 	/**
-	 *
-	 * @param {import('pixi.js').Application.stage} app
 	 * @param {function} handleProjection
 	 */
-	render(app, handleProjection) {
+	render(handleProjection) {
 		if (!this.points.length && !this.circles.length) return;
 		this.points.forEach((location, idx) => {
 			const point = handleProjection([location[0], location[1]]);

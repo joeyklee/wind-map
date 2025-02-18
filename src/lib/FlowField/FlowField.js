@@ -37,6 +37,7 @@ export default class FlowField {
 	update(fc) {
 		this.field = fc.features.map((feat) => {
 			return {
+				...feat.properties,
 				coords: feat.geometry.coordinates,
 				acceleration: whateverestVector({
 					x: feat.properties.u * this.dampenCoefficient,

@@ -1,5 +1,5 @@
 <script>
-	import MapboxWindMap from '$lib/MapboxWindMapPixi/index.svelte';
+	import MapboxWindMapPixi from '$lib/MapboxWindMapPixi/index.svelte';
 	console.log('hello!');
 
 	/**
@@ -14,7 +14,7 @@
 			<h2 class="title">3 hours of wind over LA</h2>
 			<p class="timestamp">{timestamp}</p>
 		</div>
-		<MapboxWindMap bind:timestamp />
+		<MapboxWindMapPixi bind:timestamp />
 		<p class="description">
 			Data from the <a href="https://www.nco.ncep.noaa.gov/pmb/products/rtma/"
 				>National Ocean and Atmospheric Association</a
