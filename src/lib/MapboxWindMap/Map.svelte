@@ -22,7 +22,7 @@
 
 		map = new mapboxgl.Map({
 			container,
-			style: 'mapbox://styles/mapbox/streets-v11',
+			style: 'mapbox://styles/joeyklee/ciy7jjcvw001j2rodgvt8pqef',
 			projection: 'globe', // Display the map as a globe, since satellite-v9 defaults to Mercator
 			zoom: mapZoom,
 			center: mapCenter
