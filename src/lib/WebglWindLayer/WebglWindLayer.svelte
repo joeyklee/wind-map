@@ -74,7 +74,7 @@
 			rotation: false,
 			scale: false,
 			position: true,
-			alpha: true
+			alpha: false
 		});
 		app.stage.addChild(particleContainer);
 		const movers = randomPointsInBbox.features.map((feat) => {
