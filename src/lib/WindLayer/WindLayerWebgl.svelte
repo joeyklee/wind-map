@@ -70,7 +70,7 @@
 		 */
 		// Create our circle and make a texture from it
 		const newCircle = new Graphics();
-		newCircle.circle(0, 0, 1.5);
+		newCircle.circle(0, 0, 1.2);
 		newCircle.fill({
 			color: 'rgb(125, 77, 153)',
 			alpha: 0.5
