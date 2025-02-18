@@ -150,12 +150,12 @@ export default class Mover {
 		this.points.forEach((location, idx) => {
 			const point = handleProjection([location[0], location[1]]);
 			const circle = this.circles[idx];
-			circle.clear();
-			circle.circle(0, 0, 2);
-			circle.fill({
-				color: 'red',
-				alpha: (idx / this.points.length) * 0.5
-			});
+			// circle.clear();
+			// circle.circle(0, 0, 2);
+			// circle.fill({
+			// 	color: 'red',
+			// 	alpha: (idx / this.points.length) * 0.5
+			// });
 			circle.x = point.x;
 			circle.y = point.y;
 		});
