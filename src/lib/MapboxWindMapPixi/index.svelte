@@ -8,7 +8,7 @@
 	 * @type {null|string}
 	 */
 	export let timestamp = null;
-	export let MOVER_COUNT = 2000;
+	export let MOVER_COUNT = 5_000;
 
 	/**
 	 * @type {import('mapbox-gl').Map}

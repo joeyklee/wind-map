@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { fieldList, parseTimestampFromFileName, bbox } from '$lib/WindData';
 	import { base } from '$app/paths';
-	import { Application, Graphics } from 'pixi.js';
+	import { Application, Container, Graphics, Particle, ParticleContainer, Sprite } from 'pixi.js';
 
 	/**
 	 * @type {import('mapbox-gl').Map}
@@ -16,7 +16,7 @@
 	export let timestamp;
 	export let MOVER_COUNT = 500;
 	export let FLOW_FIELD_UPDATE_MS = 1000 * 10;
-	export let moverOptions = { maxLifetime: 100, maxPoints: 20 };
+	export let moverOptions = { maxLifetime: 100, maxPoints: 15 };
 	export let flowfieldOptions = {};
 
 	/**
@@ -61,20 +61,41 @@
 			bbox
 		});
 		// create your movers
+		const newCircle = new Graphics();
+		newCircle.circle(0, 0, 1.5);
+		newCircle.fill({
+			color: 'red',
+			alpha: 0.5
+		});
+		const texture = app.renderer.generateTexture(newCircle);
+
+		const particleContainer = new ParticleContainer(MOVER_COUNT, {
+			// Enable only what's necessary for your circles
+			rotation: false,
+			scale: false,
+			position: true,
+			alpha: true
+		});
+		app.stage.addChild(particleContainer);
 		const movers = randomPointsInBbox.features.map((feat) => {
 			const myMover = new Mover(feat.geometry.coordinates, bbox, moverOptions);
 
 			// TODO: move this logic into the MoverPixi class
 			myMover.circles = [...new Array(myMover.maxPoints).fill(null)].map((d, idx) => {
-				const newCircle = new Graphics();
-				newCircle.circle(0, 0, 1.5);
-				newCircle.fill({
-					color: 'red',
+				// const circle = new Sprite(texture);
+				// circle.alpha = (idx / myMover.maxPoints) * 0.5;
+				// particleContainer.addChild(circle);
+
+				let particle = new Particle({
+					texture,
+					x: 0,
+					y: 0,
 					alpha: (idx / myMover.maxPoints) * 0.5
 				});
-				app.stage.addChild(newCircle);
 
-				return newCircle;
+				particleContainer.addParticle(particle);
+
+				return particle;
 			});
 			return myMover;
 		});
