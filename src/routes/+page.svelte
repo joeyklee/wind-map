@@ -22,9 +22,13 @@
 				target="_blank">flow field</a
 			>" from Dan Shiffman's
 			<a href="https://natureofcode.com/" target="_blank">Nature of Code</a>
-			(Hi Dan!). You'll find demo versions built for
-			<a href="{base}/maplibre-wind-map">Maplibregl</a>
-			and Mapboxgl (<a href="{base}/mapbox-wind-map">canvas</a> and
+			(Hi Dan!). You'll find demo versions built for Maplibre (<a href="{base}/maplibre-wind-map"
+				>canvas</a
+			>
+			and <a href="{base}/maplibre-wind-map-pixi">Webgl with Pixi.js</a>) and Mapboxgl (<a
+				href="{base}/mapbox-wind-map">canvas</a
+			>
+			and
 			<a href="{base}/mapbox-wind-map-pixi">Webgl with Pixi.js</a>). You can
 			<a href="https://github.com/joeyklee/wind-map" target="_blank"
 				>find the code here at @joeyklee/wind-map</a
@@ -33,7 +37,7 @@
 		<p class="note">
 			Note: this approach currently doesn't scale super well for large geographic extents (the
 			current flow field is read in as a geojson point grid). The example here is using Webgl via
-			pixi.js to animate +15K points!
+			pixi.js to animate 75K particles (5K movers × 15 trailing points)!
 		</p>
 	</div>
 </div>
@@ -64,7 +68,7 @@
 	.map-container {
 		width: 100%;
 		height: 360px;
-		margin-bottom: 15px;
+		margin-bottom: 25px;
 	}
 	.note {
 		font-size: 10px;
