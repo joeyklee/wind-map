@@ -35,9 +35,9 @@
 			> ❤.
 		</p>
 		<p class="note">
-			Note: this approach currently doesn't scale super well for large geographic extents (the
-			current flow field is read in as a geojson point grid). The example here is using Webgl via
-			pixi.js to animate 75K particles (5K movers × 15 trailing points)!
+			Note: this approach currently doesn't scale super well for large geographic extents at the
+			moment (the current flow field is read in as a geojson point grid). The example here is using
+			Webgl via Pixi.js to animate 5K movers × 15 trailing points = 75K particles 😱!
 		</p>
 	</div>
 </div>
