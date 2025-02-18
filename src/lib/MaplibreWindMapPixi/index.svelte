@@ -1,14 +1,14 @@
 <script>
 	// @ts-check
-	import Map from './Map.svelte';
-	import CanvasWindLayer from '../WindLayer/WindLayerCanvas.svelte';
+	import Map from '../MaplibreWindMap/Map.svelte';
 	import maplibregl from 'maplibre-gl';
+	import WebglWindLayer from '$lib/WindLayer/WindLayerWebgl.svelte';
 
 	/**
 	 * @type {null|string}
 	 */
 	export let timestamp = null;
-	export let MOVER_COUNT = 1000;
+	export let MOVER_COUNT = 5_000;
 
 	/**
 	 * @type {import('mapbox-gl').Map}
@@ -40,7 +40,7 @@
 	{#if width && height}
 		<Map bind:map bind:mapLoaded>
 			{#if mapLoaded && width && height && map}
-				<CanvasWindLayer
+				<WebglWindLayer
 					{map}
 					{width}
 					{height}

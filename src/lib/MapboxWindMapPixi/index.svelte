@@ -1,14 +1,14 @@
 <script>
 	// @ts-check
-	import Map from './Map.svelte';
-	import CanvasWindLayer from '../WindLayer/WindLayerCanvas.svelte';
-	import maplibregl from 'maplibre-gl';
+	import Map from '../MapboxWindMap/Map.svelte';
+	import mapboxgl from 'mapbox-gl';
+	import WebglWindLayer from '$lib/WindLayer/WindLayerWebgl.svelte';
 
 	/**
 	 * @type {null|string}
 	 */
 	export let timestamp = null;
-	export let MOVER_COUNT = 1000;
+	export let MOVER_COUNT = 5_000;
 
 	/**
 	 * @type {import('mapbox-gl').Map}
@@ -32,7 +32,7 @@
 	 * @param {number[]} d
 	 */
 	function project(d) {
-		return map.project(new maplibregl.LngLat(d[0], d[1]));
+		return map.project(new mapboxgl.LngLat(d[0], d[1]));
 	}
 </script>
 
@@ -40,7 +40,7 @@
 	{#if width && height}
 		<Map bind:map bind:mapLoaded>
 			{#if mapLoaded && width && height && map}
-				<CanvasWindLayer
+				<WebglWindLayer
 					{map}
 					{width}
 					{height}

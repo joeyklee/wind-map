@@ -33,6 +33,7 @@
 		"dotenv": "^16.4.7",
 		"kdbush": "^4.0.2",
 		"mapbox-gl": "^3.9.3",
-		"maplibre-gl": "^5.1.0"
+		"maplibre-gl": "^5.1.0",
+		"pixi.js": "^8.8.0"
 	}
 }

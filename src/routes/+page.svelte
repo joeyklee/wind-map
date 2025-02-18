@@ -1,6 +1,6 @@
 <script>
 	import { base } from '$app/paths';
-	import MapboxWindMap from '$lib/MapboxWindMap/index.svelte';
+	import MapboxWindMapPixi from '$lib/MapboxWindMapPixi/index.svelte';
 	let timestamp;
 </script>
 
@@ -8,7 +8,7 @@
 	<div class="container">
 		<h1 class="title">Flow Fields! Vectors! Wind maps!</h1>
 		<div class="map-container">
-			<MapboxWindMap MOVER_COUNT={1000} bind:timestamp />
+			<MapboxWindMapPixi MOVER_COUNT={5000} bind:timestamp />
 			<p class="timestamp">Data: NOAA · {timestamp}</p>
 		</div>
 		<p class="description">
@@ -22,17 +22,22 @@
 				target="_blank">flow field</a
 			>" from Dan Shiffman's
 			<a href="https://natureofcode.com/" target="_blank">Nature of Code</a>
-			(Hi Dan!). You'll find demo versions built for
-			<a href="{base}/maplibre-wind-map">Maplibregl</a>
-			and <a href="{base}/mapbox-wind-map">Mapboxgl</a>. You can
+			(Hi Dan!). You'll find demo versions built for Maplibre (<a href="{base}/maplibre-wind-map"
+				>canvas</a
+			>
+			and <a href="{base}/maplibre-wind-map-pixi">Webgl with Pixi.js</a>) and Mapboxgl (<a
+				href="{base}/mapbox-wind-map">canvas</a
+			>
+			and
+			<a href="{base}/mapbox-wind-map-pixi">Webgl with Pixi.js</a>). You can
 			<a href="https://github.com/joeyklee/wind-map" target="_blank"
 				>find the code here at @joeyklee/wind-map</a
 			> ❤.
 		</p>
 		<p class="note">
-			Note: this approach currently doesn't really scale well for large geographic extents but could
-			be sped up by taking better care of memory usage and trying to render in webgl instead of
-			canvas!
+			Note: this approach currently doesn't scale super well for large geographic extents at the
+			moment (the current flow field is read in as a geojson point grid). The example here is using
+			Webgl via Pixi.js to animate 5K movers × 15 trailing points = 75K particles 😱!
 		</p>
 	</div>
 </div>
@@ -63,7 +68,7 @@
 	.map-container {
 		width: 100%;
 		height: 360px;
-		margin-bottom: 15px;
+		margin-bottom: 25px;
 	}
 	.note {
 		font-size: 10px;
